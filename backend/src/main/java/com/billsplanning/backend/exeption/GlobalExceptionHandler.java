@@ -16,6 +16,11 @@ public class GlobalExceptionHandler {
         return ResponseEntity.status(HttpStatus.CONFLICT).body(ex.getMessage());
     }
 
+    @ExceptionHandler(EmailOrPasswordInvalidException.class)
+    public ResponseEntity<String> handleEmailOrPasswordInvalid(EmailOrPasswordInvalidException ex) {
+        return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(ex.getMessage());
+    }
+
     @ExceptionHandler(Exception.class)
     public ResponseEntity<String> handleGenericException(Exception ex) {
         ex.printStackTrace(); 

@@ -1,5 +1,10 @@
 package com.billsplanning.backend.entity;
 
+import java.util.Collection;
+
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
+
 import jakarta.persistence.*;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -10,7 +15,7 @@ import lombok.AllArgsConstructor;
 @Data
 @NoArgsConstructor // Construtor vazio (obrigatório para o JPA)
 @AllArgsConstructor // Construtor com todos os campos
-public class User {
+public class User implements UserDetails{
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -24,5 +29,10 @@ public class User {
 
     @Column(nullable = false)
     private String password;
+
+    @Override
+    public Collection<? extends GrantedAuthority> getAuthorities() {
+        return null;
+    }
 
 }
